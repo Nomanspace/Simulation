@@ -1,0 +1,101 @@
+@startuml
+class org.nomanspace.Herbivore {
+- {static} int DEFAULT_HP
+- {static} int DEFAULT_SPEED
++ void makeMove()
+~ String getAvatar()
+}
+
+
+class org.nomanspace.Rock {
+~ String getAvatar()
+}
+
+abstract class org.nomanspace.Creature {
+- int hp
+- int speed
++ int getHp()
++ int getSpeed()
++ {abstract}void makeMove()
+}
+
+
+class org.nomanspace.Map {
+- java.util.Map<String,Entity> cellMap
+- {static} int cellCount
+- int rows
+- int cols
++ {static} Map gameFieldGenerate()
+- java.util.Map<String,Entity> setGameSize(Integer)
+- void generateCell()
++ void addGameEntity(Integer,Integer,Entity)
++ Entity getGameEntity(Integer,Integer)
++ void removeEntity(Integer,Integer)
+}
+
+
+class org.nomanspace.ImageRender {
++ void printField(Map)
+}
+
+abstract class org.nomanspace.Entity {
+~ {abstract}String getAvatar()
+}
+
+class org.nomanspace.FieldChecker {
++ {static} void main(String[])
++ {static} int getValidNumber(Scanner)
++ {static} List<String> getCombinations(int)
++ {static} void addPerfectSquareCombinations(int,List<String>)
++ {static} void addRectangleCombinations(int,List<String>)
++ {static} void findRectangleCombinations(int,List<String>)
++ {static} int isPerfectSquare(int)
++ {static} boolean isRectangle(int)
++ {static} int findClosestNumber(int)
+}
+
+class org.nomanspace.Main {
++ {static} void main(String[])
+}
+
+class org.nomanspace.Grass {
+~ String getAvatar()
+}
+
+class org.nomanspace.Config {
+~ int rows
+~ int cols
+}
+
+interface org.nomanspace.Removable {
++ void deleteEntity()
+}
+
+class org.nomanspace.Tree {
+~ String getAvatar()
+}
+
+class org.nomanspace.Moves {
++ void getCoordinate(Entity)
++ void moveCreature(Map,Entity)
+}
+
+class org.nomanspace.Predator {
+- {static} int DEFAULT_HP
+- {static} int DEFAULT_SPEED
+- int damage
++ int damageDeal()
++ void makeMove()
+~ String getAvatar()
+}
+
+
+
+
+org.nomanspace.Creature <|-- org.nomanspace.Herbivore
+org.nomanspace.Entity <|-- org.nomanspace.Rock
+org.nomanspace.Entity <|-- org.nomanspace.Creature
+org.nomanspace.Entity <|-- org.nomanspace.Grass
+org.nomanspace.Entity <|-- org.nomanspace.Tree
+org.nomanspace.Creature <|-- org.nomanspace.Predator
+@enduml
